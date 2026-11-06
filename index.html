@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemeta - Movie Tickets</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+    <div id="app-header"></div>
+
+    <section class="view" data-view="home">
+        <div class="hero">
+            <h2>Welcome to Movie Ticket Booking</h2>
+            <p>Pick a film that is playing now and book your seats in a few steps.</p>
+            <a href="#movies" class="btn">Browse Movies</a>
+        </div>
+        <div class="page">
+            <h2>Featured</h2>
+            <p class="lead">Top movies loaded from the Cinemeta catalog.</p>
+            <div class="movies-grid" id="featured-grid">
+                <p class="status">Loading movies...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="view page" data-view="movies" hidden>
+        <h2 id="movies-heading">Now Showing</h2>
+        <p class="lead">Search the catalog or book one of the current top movies.</p>
+        <div class="toolbar">
+            <form id="search-form" class="search-form">
+                <input id="search-input" type="search" placeholder="Search by title" aria-label="Search movies">
+                <button class="btn" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="movies-grid" id="movies-grid">
+            <p class="status">Loading movies...</p>
+        </div>
+    </section>
+
+    <section class="view" data-view="login" hidden>
+        <div class="panel">
+            <h2>Login</h2>
+            <p class="center">Selected movie: <strong id="movie-name">None</strong></p>
+            <form id="login-form">
+                <label for="login-email">Email Address</label>
+                <input id="login-email" type="email" placeholder="Enter your email" required>
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" placeholder="Enter your password" required>
+                <p id="login-message" class="form-error" role="alert"></p>
+                <button class="btn block" type="submit">Login</button>
+            </form>
+            <p class="center">New user? <a id="register-link" href="#register">Register here</a></p>
+        </div>
+    </section>
+
+    <section class="view" data-view="register" hidden>
+        <div class="panel">
+            <h2>Create Your Account</h2>
+            <p class="center">Accounts stay in this browser. There is no server.</p>
+            <form id="register-form">
+                <label for="name">Full Name</label>
+                <input id="name" type="text" placeholder="Enter your full name" required>
+                <label for="register-email">Email Address</label>
+                <input id="register-email" type="email" placeholder="Enter your email" required>
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" maxlength="10" required>
+                <label for="register-password">Password</label>
+                <input id="register-password" type="password" placeholder="Create a password" minlength="8" required>
+                <label for="confirm-password">Confirm Password</label>
+                <input id="confirm-password" type="password" placeholder="Confirm your password" minlength="8" required>
+                <p id="register-message" class="form-error" role="alert"></p>
+                <button class="btn block" type="submit">Register</button>
+            </form>
+            <p class="center">Already have an account? <a id="login-link" href="#login">Login here</a></p>
+        </div>
+    </section>
+
+    <section class="view" data-view="booking" hidden>
+        <div class="panel">
+            <h2>Book Tickets</h2>
+            <div class="selected-movie">
+                <img id="book-poster" alt="">
+                <div>
+                    <strong id="book-title"></strong>
+                    <p id="book-meta" class="movie-meta"></p>
+                </div>
+            </div>
+            <form id="booking-form">
+                <label for="guest-name">Name on the ticket</label>
+                <input id="guest-name" type="text" required>
+                <label for="showtime">Showtime</label>
+                <select id="showtime" required>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="1:30 PM">1:30 PM</option>
+                    <option value="4:45 PM">4:45 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                </select>
+                <label for="tickets">Tickets</label>
+                <input id="tickets" type="number" min="1" max="8" value="1" required>
+                <p id="booking-message" class="form-error" role="alert"></p>
+                <button class="btn block" type="submit">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="view" data-view="contact" hidden>
+        <div class="panel">
+            <h2>Contact Us</h2>
+            <p class="center">Questions about a booking? Send a note or email <a href="mailto:info@movietickets.com">info@movietickets.com</a>.</p>
+            <form id="contact-form">
+                <label for="contact-name">Name</label>
+                <input id="contact-name" type="text" required>
+                <label for="contact-email">Email</label>
+                <input id="contact-email" type="email" required>
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" required></textarea>
+                <p id="contact-status" role="status"></p>
+                <button class="btn block" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="view" data-view="thanks" hidden>
+        <div class="panel ticket">
+            <h1>Thank You!</h1>
+            <p id="ticket-details">Your booking has been confirmed.</p>
+            <a class="btn" href="#movies">Browse more movies</a>
+        </div>
+    </section>
+
+    <div id="app-footer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/thankyou.js"></script>
+    <script src="js/router.js"></script>
+</body>
+</html>
